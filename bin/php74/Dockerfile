@@ -64,6 +64,17 @@ libpng-dev && \
     docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd
 
+
+## install node js
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates && \
+    curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get -y install nodejs && \
+    apt-get -y  install gcc g++ make
+RUN node --version
+## install gulp
+RUN npm install --global gulp-cli
+
 # Enable apache modules
 RUN a2enmod rewrite headers
 
